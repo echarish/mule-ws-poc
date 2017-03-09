@@ -1,0 +1,213 @@
+<wsdl:definitions xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:tns="http://ws.example.poc.com/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:ns1="http://schemas.xmlsoap.org/soap/http" name="IHelloWorldService" targetNamespace="http://ws.example.poc.com/">
+<wsdl:types>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://ws.example.poc.com/" elementFormDefault="unqualified" targetNamespace="http://ws.example.poc.com/" version="1.0">
+<xs:element name="multiInputCustom" type="tns:multiInputCustom"/>
+<xs:element name="multiInputCustomResponse" type="tns:multiInputCustomResponse"/>
+<xs:element name="sayHi" type="tns:sayHi"/>
+<xs:element name="sayHiResponse" type="tns:sayHiResponse"/>
+<xs:element name="webserviceA" type="tns:webserviceA"/>
+<xs:element name="webserviceAResponse" type="tns:webserviceAResponse"/>
+<xs:element name="webserviceB" type="tns:webserviceB"/>
+<xs:element name="webserviceBResponse" type="tns:webserviceBResponse"/>
+<xs:element name="xmlInputService" type="tns:xmlInputService"/>
+<xs:element name="xmlInputServiceNoJaxB" type="tns:xmlInputServiceNoJaxB"/>
+<xs:element name="xmlInputServiceNoJaxBResponse" type="tns:xmlInputServiceNoJaxBResponse"/>
+<xs:element name="xmlInputServiceResponse" type="tns:xmlInputServiceResponse"/>
+<xs:complexType name="webserviceA">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="webserviceAResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="webserviceB">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="webserviceBResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="xmlInputServiceNoJaxB">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="xmlInputServiceNoJaxBResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="xmlInputService">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="xmlInputServiceResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sayHi">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="sayHiResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="multiInputCustom">
+<xs:sequence>
+<xs:element minOccurs="0" name="arg0" type="tns:customObjectA"/>
+<xs:element minOccurs="0" name="arg1" type="tns:customObjectB"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="customObjectA">
+<xs:sequence>
+<xs:element minOccurs="0" name="customPropertyA" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="customObjectB">
+<xs:sequence>
+<xs:element minOccurs="0" name="customPropertyB" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+<xs:complexType name="multiInputCustomResponse">
+<xs:sequence>
+<xs:element minOccurs="0" name="return" type="xs:string"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>
+</wsdl:types>
+<wsdl:message name="webserviceAResponse">
+<wsdl:part element="tns:webserviceAResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="sayHiResponse">
+<wsdl:part element="tns:sayHiResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="webserviceA">
+<wsdl:part element="tns:webserviceA" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="webserviceB">
+<wsdl:part element="tns:webserviceB" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="multiInputCustomResponse">
+<wsdl:part element="tns:multiInputCustomResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="xmlInputServiceNoJaxB">
+<wsdl:part element="tns:xmlInputServiceNoJaxB" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="webserviceBResponse">
+<wsdl:part element="tns:webserviceBResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="xmlInputServiceResponse">
+<wsdl:part element="tns:xmlInputServiceResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="xmlInputServiceNoJaxBResponse">
+<wsdl:part element="tns:xmlInputServiceNoJaxBResponse" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="xmlInputService">
+<wsdl:part element="tns:xmlInputService" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="sayHi">
+<wsdl:part element="tns:sayHi" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:message name="multiInputCustom">
+<wsdl:part element="tns:multiInputCustom" name="parameters"></wsdl:part>
+</wsdl:message>
+<wsdl:portType name="IHelloWorld">
+<wsdl:operation name="webserviceA">
+<wsdl:input message="tns:webserviceA" name="webserviceA"></wsdl:input>
+<wsdl:output message="tns:webserviceAResponse" name="webserviceAResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="webserviceB">
+<wsdl:input message="tns:webserviceB" name="webserviceB"></wsdl:input>
+<wsdl:output message="tns:webserviceBResponse" name="webserviceBResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="xmlInputServiceNoJaxB">
+<wsdl:input message="tns:xmlInputServiceNoJaxB" name="xmlInputServiceNoJaxB"></wsdl:input>
+<wsdl:output message="tns:xmlInputServiceNoJaxBResponse" name="xmlInputServiceNoJaxBResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="xmlInputService">
+<wsdl:input message="tns:xmlInputService" name="xmlInputService"></wsdl:input>
+<wsdl:output message="tns:xmlInputServiceResponse" name="xmlInputServiceResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="sayHi">
+<wsdl:input message="tns:sayHi" name="sayHi"></wsdl:input>
+<wsdl:output message="tns:sayHiResponse" name="sayHiResponse"></wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="multiInputCustom">
+<wsdl:input message="tns:multiInputCustom" name="multiInputCustom"></wsdl:input>
+<wsdl:output message="tns:multiInputCustomResponse" name="multiInputCustomResponse"></wsdl:output>
+</wsdl:operation>
+</wsdl:portType>
+<wsdl:binding name="IHelloWorldServiceSoapBinding" type="tns:IHelloWorld">
+<soap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+<wsdl:operation name="webserviceA">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="webserviceA">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="webserviceAResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="webserviceB">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="webserviceB">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="webserviceBResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="xmlInputServiceNoJaxB">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="xmlInputServiceNoJaxB">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="xmlInputServiceNoJaxBResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="xmlInputService">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="xmlInputService">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="xmlInputServiceResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="sayHi">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="sayHi">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="sayHiResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+<wsdl:operation name="multiInputCustom">
+<soap:operation soapAction="" style="document"/>
+<wsdl:input name="multiInputCustom">
+<soap:body use="literal"/>
+</wsdl:input>
+<wsdl:output name="multiInputCustomResponse">
+<soap:body use="literal"/>
+</wsdl:output>
+</wsdl:operation>
+</wsdl:binding>
+<wsdl:service name="IHelloWorldService">
+<wsdl:port binding="tns:IHelloWorldServiceSoapBinding" name="IHelloWorldPort">
+<soap:address location="http://localhost:63081/hello"/>
+</wsdl:port>
+</wsdl:service>
+</wsdl:definitions>

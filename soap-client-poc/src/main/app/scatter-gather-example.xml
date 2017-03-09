@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd">
+    <flow name="scatter-gather-exampleFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="sgpoc" doc:name="HTTP"/>
+        <object-to-string-transformer doc:name="Object to String"/>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+        <scatter-gather doc:name="Scatter-Gather">
+            <custom-aggregation-strategy class="com.example.poc.CustomSGAggregationStrategy"/>
+            <processor-chain>
+                <dw:transform-message metadata:id="c9313ca3-3871-409c-9a07-6df2b6f3b922" doc:name="Transform Message">
+                    <dw:input-payload mimeType="application/java"/>
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#webserviceA: {
+		arg0: payload
+	}
+}]]></dw:set-payload>
+                </dw:transform-message>
+                <ws:consumer config-ref="Web_Service_Consumer" operation="webserviceA" doc:name="Web Service Consumer A"/>
+                <dw:transform-message metadata:id="4250084e-3fc9-448a-8bf4-f015d0916d1d" doc:name="Transform Message">
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+%namespace ns0 http://ws.example.poc.com/
+---
+payload.ns0#webserviceAResponse.return]]></dw:set-payload>
+                </dw:transform-message>
+                <logger message="#[payload + 'web service A response']" level="INFO" doc:name="Logger"/>
+            </processor-chain>
+            <processor-chain>
+                <dw:transform-message metadata:id="5eac453c-f9a3-4cdc-b44f-f696581cf393" doc:name="Transform Message">
+                    <dw:input-payload mimeType="application/java"/>
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#webserviceB: {
+		arg0: payload
+	}
+}]]></dw:set-payload>
+                </dw:transform-message>
+                <ws:consumer config-ref="Web_Service_Consumer" operation="webserviceB" doc:name="Web Service Consumer B"/>
+                <dw:transform-message metadata:id="a94c93e1-404e-4849-9d29-bd17fc05482b" doc:name="Transform Message">
+                    <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+%namespace ns0 http://ws.example.poc.com/
+---
+payload.ns0#webserviceBResponse.return]]></dw:set-payload>
+                </dw:transform-message>
+                <logger message="#[payload + 'web service B response']" level="INFO" doc:name="Logger"/>
+            </processor-chain>
+        </scatter-gather>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+</mule>

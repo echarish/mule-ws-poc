@@ -1,0 +1,172 @@
+<custom__type__definition>
+  <version>5.2.0.0</version>
+  <typeName class="org.mule.common.metadata.DefaultMetaDataKey">
+    <id>xmlinput</id>
+    <displayName>xmlinput</displayName>
+    <category>DEFAULT</category>
+    <metaDataKeyPropertiesManager>
+      <properties>
+        <org.mule.common.metadata.key.property.dsql.DsqlFromMetaDataKeyProperty/>
+      </properties>
+    </metaDataKeyPropertiesManager>
+  </typeName>
+  <metadataModel class="org.mule.common.metadata.DefaultXmlMetaDataModel">
+    <dataType>XML</dataType>
+    <metaDataModelPropertiesManager>
+      <properties>
+        <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/>
+        <org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty>
+          <exampleContent>C:\Users\K.Harish\Work\MuleWorkspaces\Various_POC\soap-client-poc\src\main\resources\wsinput.xml</exampleContent>
+        </org.mule.common.metadata.property.TextBasedExampleMetaDataModelProperty>
+        <org.mule.tooling.metadata.properties.DefinitionEditorModeType>
+          <mode>EXAMPLE</mode>
+          <path>src\main\resources\wsinput.xml</path>
+          <rootElement>wsinput</rootElement>
+        </org.mule.tooling.metadata.properties.DefinitionEditorModeType>
+      </properties>
+    </metaDataModelPropertiesManager>
+    <fields>
+      <org.mule.common.metadata.DefaultMetaDataField>
+        <name>text()</name>
+        <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+          <dataType>STRING</dataType>
+          <metaDataModelPropertiesManager>
+            <properties/>
+          </metaDataModelPropertiesManager>
+        </model>
+        <accessType>READ_WRITE</accessType>
+        <metaDataFieldPropertyManager>
+          <properties>
+            <org.mule.common.metadata.property.QNameMetaDataProperty>
+              <name>
+                <namespaceURI></namespaceURI>
+                <localPart>text()</localPart>
+                <prefix></prefix>
+              </name>
+            </org.mule.common.metadata.property.QNameMetaDataProperty>
+          </properties>
+        </metaDataFieldPropertyManager>
+      </org.mule.common.metadata.DefaultMetaDataField>
+      <org.mule.common.metadata.DefaultMetaDataField>
+        <name>inputs</name>
+        <model class="org.mule.common.metadata.DefaultXmlMetaDataModel">
+          <dataType>XML</dataType>
+          <metaDataModelPropertiesManager>
+            <properties/>
+          </metaDataModelPropertiesManager>
+          <fields>
+            <org.mule.common.metadata.DefaultMetaDataField>
+              <name>text()</name>
+              <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                <dataType>STRING</dataType>
+                <metaDataModelPropertiesManager>
+                  <properties/>
+                </metaDataModelPropertiesManager>
+              </model>
+              <accessType>READ_WRITE</accessType>
+              <metaDataFieldPropertyManager>
+                <properties>
+                  <org.mule.common.metadata.property.QNameMetaDataProperty>
+                    <name>
+                      <namespaceURI></namespaceURI>
+                      <localPart>text()</localPart>
+                      <prefix></prefix>
+                    </name>
+                  </org.mule.common.metadata.property.QNameMetaDataProperty>
+                </properties>
+              </metaDataFieldPropertyManager>
+            </org.mule.common.metadata.DefaultMetaDataField>
+            <org.mule.common.metadata.DefaultMetaDataField>
+              <name>argumentA</name>
+              <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                <dataType>STRING</dataType>
+                <metaDataModelPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      <typeQName>
+                        <namespaceURI>http://www.w3.org/2001/XMLSchema</namespaceURI>
+                        <localPart>normalizedString</localPart>
+                        <prefix></prefix>
+                      </typeQName>
+                    </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                  </properties>
+                </metaDataModelPropertiesManager>
+              </model>
+              <accessType>READ_WRITE</accessType>
+              <metaDataFieldPropertyManager>
+                <properties>
+                  <org.mule.common.metadata.property.QNameMetaDataProperty>
+                    <name>
+                      <namespaceURI></namespaceURI>
+                      <localPart>argumentA</localPart>
+                      <prefix></prefix>
+                    </name>
+                  </org.mule.common.metadata.property.QNameMetaDataProperty>
+                </properties>
+              </metaDataFieldPropertyManager>
+            </org.mule.common.metadata.DefaultMetaDataField>
+            <org.mule.common.metadata.DefaultMetaDataField>
+              <name>argumentB</name>
+              <model class="org.mule.common.metadata.DefaultSimpleMetaDataModel">
+                <dataType>STRING</dataType>
+                <metaDataModelPropertiesManager>
+                  <properties>
+                    <org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                      <typeQName reference="../../../../../../org.mule.common.metadata.DefaultMetaDataField[2]/model/metaDataModelPropertiesManager/properties/org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty/typeQName"/>
+                    </org.mule.common.metadata.property.xml.SchemaTypeMetaDataProperty>
+                  </properties>
+                </metaDataModelPropertiesManager>
+              </model>
+              <accessType>READ_WRITE</accessType>
+              <metaDataFieldPropertyManager>
+                <properties>
+                  <org.mule.common.metadata.property.QNameMetaDataProperty>
+                    <name>
+                      <namespaceURI></namespaceURI>
+                      <localPart>argumentB</localPart>
+                      <prefix></prefix>
+                    </name>
+                  </org.mule.common.metadata.property.QNameMetaDataProperty>
+                </properties>
+              </metaDataFieldPropertyManager>
+            </org.mule.common.metadata.DefaultMetaDataField>
+          </fields>
+          <rootElement>
+            <namespaceURI></namespaceURI>
+            <localPart>wsinput</localPart>
+            <prefix></prefix>
+          </rootElement>
+          <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+            <schemas>
+              <string>&lt;?xml version=&quot;1.0&quot;?&gt;
+&lt;xsd:schema xmlns:xsd=&quot;http://www.w3.org/2001/XMLSchema&quot; targetNamespace=&quot;&quot; elementFormDefault=&quot;qualified&quot;&gt;&lt;xsd:element name=&quot;wsinput&quot;&gt;&lt;xsd:complexType mixed=&quot;true&quot;&gt;&lt;xsd:sequence&gt;&lt;xsd:element name=&quot;inputs&quot; minOccurs=&quot;0&quot;&gt;&lt;xsd:complexType mixed=&quot;true&quot;&gt;&lt;xsd:sequence&gt;&lt;xsd:element name=&quot;argumentA&quot; minOccurs=&quot;0&quot; type=&quot;xsd:normalizedString&quot; /&gt;&lt;xsd:element name=&quot;argumentB&quot; minOccurs=&quot;0&quot; type=&quot;xsd:normalizedString&quot; /&gt;&lt;/xsd:sequence&gt;&lt;/xsd:complexType&gt;&lt;/xsd:element&gt;&lt;/xsd:sequence&gt;&lt;/xsd:complexType&gt;&lt;/xsd:element&gt;&lt;/xsd:schema&gt;
+</string>
+            </schemas>
+            <encoding>UTF-8</encoding>
+          </schemas>
+          <namespaceManager>
+            <namespacePrefix/>
+          </namespaceManager>
+        </model>
+        <accessType>READ_WRITE</accessType>
+        <metaDataFieldPropertyManager>
+          <properties>
+            <org.mule.common.metadata.property.QNameMetaDataProperty>
+              <name>
+                <namespaceURI></namespaceURI>
+                <localPart>inputs</localPart>
+                <prefix></prefix>
+              </name>
+            </org.mule.common.metadata.property.QNameMetaDataProperty>
+          </properties>
+        </metaDataFieldPropertyManager>
+      </org.mule.common.metadata.DefaultMetaDataField>
+    </fields>
+    <rootElement reference="../fields/org.mule.common.metadata.DefaultMetaDataField[2]/model/rootElement"/>
+    <schemas class="org.mule.common.metadata.StringBasedSchemaProvider">
+      <schemas reference="../../fields/org.mule.common.metadata.DefaultMetaDataField[2]/model/schemas/schemas"/>
+      <encoding reference="../../fields/org.mule.common.metadata.DefaultMetaDataField[2]/model/schemas/encoding"/>
+    </schemas>
+    <namespaceManager reference="../fields/org.mule.common.metadata.DefaultMetaDataField[2]/model/namespaceManager"/>
+  </metadataModel>
+</custom__type__definition>

@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:dw="http://www.mulesoft.org/schema/mule/ee/dw" xmlns:ws="http://www.mulesoft.org/schema/mule/ws" xmlns:metadata="http://www.mulesoft.org/schema/mule/metadata" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns:tracking="http://www.mulesoft.org/schema/mule/ee/tracking" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/ws http://www.mulesoft.org/schema/mule/ws/current/mule-ws.xsd
+http://www.mulesoft.org/schema/mule/ee/dw http://www.mulesoft.org/schema/mule/ee/dw/current/dw.xsd
+http://www.mulesoft.org/schema/mule/ee/tracking http://www.mulesoft.org/schema/mule/ee/tracking/current/mule-tracking-ee.xsd">
+    <http:listener-config name="HTTP_Listener_Configuration" host="0.0.0.0" port="8081" doc:name="HTTP Listener Configuration"/>
+    <ws:consumer-config name="Web_Service_Consumer" service="IHelloWorldService" port="IHelloWorldPort" serviceAddress="http://localhost:63081/hello" wsdlLocation="hellowold.wsdl" doc:name="Web Service Consumer"/>
+    <flow name="simple-single-argument-client-example">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="soapclient" doc:name="HTTP"/>
+        <set-payload value="Harish Kumar" doc:name="Set Payload"/>
+        <dw:transform-message metadata:id="c13a94cf-7498-4d10-bf38-19b78ad40596" doc:name="Transform Message">
+            <dw:input-payload mimeType="application/java"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#sayHi: {
+		arg0: payload
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="sayHi" doc:name="Web Service Consumer"/>
+        <logger message=" #[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="soap-client-pocFlow">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="multiclient" doc:name="HTTP"/>
+        <dw:transform-message metadata:id="e5e0bfdc-731f-46a3-b5e0-3a322d169bb8" doc:name="Transform Message">
+            <dw:input-payload mimeType="application/json"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#multiInputCustom: {
+		arg0: {
+			customPropertyA: payload.arg1
+		},
+		arg1: {
+			customPropertyB: payload.arg2
+		}
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="multiInputCustom" doc:name="Web Service Consumer"/>
+        <dw:transform-message metadata:id="8fcebc81-c0c9-4ac8-a607-eb3e2b478a05" doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+%namespace ns0 http://ws.example.poc.com/
+---
+payload.ns0#multiInputCustomResponse.return]]></dw:set-payload>
+        </dw:transform-message>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="soap-client-xmlinput-service-call">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="xmlinput" doc:name="HTTP"/>
+        <dw:transform-message metadata:id="617c2dc8-3f4b-40f8-8353-fbe822e559cb" doc:name="Transform Message">
+            <dw:input-payload mimeType="application/java"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#xmlInputService: {
+		arg0: payload
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="xmlInputService" doc:name="Web Service Consumer"/>
+        <dw:transform-message metadata:id="fe38d9ae-cdec-4240-ac93-4587790ef69d" doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+%namespace ns0 http://ws.example.poc.com/
+---
+payload.ns0#xmlInputServiceResponse.return]]></dw:set-payload>
+        </dw:transform-message>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+    <flow name="soap-client-pocFlow1">
+        <http:listener config-ref="HTTP_Listener_Configuration" path="nojaxb" doc:name="HTTP"/>
+        <dw:transform-message metadata:id="f2c78a9f-05e2-47f5-886f-eedf82b84d97" doc:name="Transform Message">
+            <dw:input-payload mimeType="application/java"/>
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/xml
+%namespace ns0 http://ws.example.poc.com/
+---
+{
+	ns0#xmlInputServiceNoJaxB: {
+		arg0: payload
+	}
+}]]></dw:set-payload>
+        </dw:transform-message>
+        <ws:consumer config-ref="Web_Service_Consumer" operation="xmlInputServiceNoJaxB" doc:name="Web Service Consumer"/>
+        <dw:transform-message metadata:id="00f40bda-34a6-45e2-86bf-01434d6a89ea" doc:name="Transform Message">
+            <dw:set-payload><![CDATA[%dw 1.0
+%output application/java
+%namespace ns0 http://ws.example.poc.com/
+---
+payload.ns0#xmlInputServiceNoJaxBResponse.return]]></dw:set-payload>
+        </dw:transform-message>
+        <logger message="#[payload]" level="INFO" doc:name="Logger"/>
+    </flow>
+</mule>

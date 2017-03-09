@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:mulexml="http://www.mulesoft.org/schema/mule/xml" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:spring="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-current.xsd
+http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/xml http://www.mulesoft.org/schema/mule/xml/current/mule-xml.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	<flow name="convertors-flowFlow">
+		<http:listener config-ref="HTTP_Listener_Configuration"
+			path="objectxml" doc:name="HTTP" />
+		<custom-transformer class="com.poc.example.DummyObjectCreator"
+			doc:name="Java" />
+		<flow-ref name="output-object-to-xml-converstion" doc:name="output-object-to-xml-converstion" />
+		<logger message="#[payload]" level="INFO" doc:name="Logger" />
+	</flow>
+	<sub-flow name="input-xml-to-object-convertion">
+		<mulexml:xml-to-object-transformer
+			doc:name="InputXMLToObject" driverClass="com.thoughtworks.xstream.io.xml.Xpp3Driver">
+			<mulexml:alias name="wsinput" class="com.poc.example.ws.vo.WsInputPojo" />
+		</mulexml:xml-to-object-transformer>
+	</sub-flow>
+	<sub-flow name="output-object-to-xml-converstion">
+		<mulexml:object-to-xml-transformer
+			doc:name="Object to XML">
+			<mulexml:alias name="wsoutput"
+				class="com.poc.example.ws.vo.WsOutputPojo" />
+		</mulexml:object-to-xml-transformer>
+	</sub-flow>
+</mule>
